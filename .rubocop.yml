@@ -1,0 +1,318 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - ./lib/rubocop/cop/doctolib/no_default_scope
+  - ./lib/rubocop/cop/doctolib/no_test_skip
+  - ./lib/rubocop/cop/doctolib/no_test_wait_for_ajax
+  - ./lib/rubocop/cop/doctolib/no_focus
+  - ./lib/rubocop/cop/doctolib/no_walkme
+  - ./lib/rubocop/cop/doctolib/click_on
+  - ./lib/rubocop/cop/doctolib/no_plain_pry
+  - ./lib/rubocop/cop/doctolib/no_env_usage
+
+Doctolib/NoDefaultScope:
+  Enabled: true
+Doctolib/NoPlainPry:
+  Enabled: true
+Doctolib/NoEnvUsage:
+  Enabled: true
+  Include:
+    - app/**/*
+    - db/**/*
+    - lib/**/*
+    - config/**/*
+  Exclude:
+    - lib/ci/**/*.rb
+    - lib/dev_ops/**/*.rb
+    - lib/scripts/**/*.rb
+    - lib/tasks/**/*.rake
+    - lib/**/tasks/**/*.rake
+    - config/environments/development.rb
+    - config/environments/test.rb
+Doctolib/NoWalkme:
+  Exclude:
+    - test/integration/walkme/**/*.rb
+    - test/test_utils/test_classes/walkme_integration_test.rb
+    - test/walkme/**/*.rb
+Doctolib/NoTestSkip:
+  Enabled: true
+  Include:
+    - test/**/*.rb
+Doctolib/NoTestWaitForAjax:
+  Enabled: true
+  Include:
+    - test/**/*.rb
+Doctolib/NoFocus:
+  Enabled: true
+  Include:
+    - test/**/*.rb
+AllCops:
+  AllowSymlinksInCacheRootDirectory: true
+  Exclude:
+    - db/**/*
+    - vendor/**/*
+    - '**/node_modules/**/*'
+    - quarantine/**/*
+    - bin/**/*
+    - react-native/**/Podfile
+  NewCops: enable
+Layout/ArgumentAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+# This cop mainly do false positives.
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+Layout/DotPosition:
+  Enabled: true
+  EnforcedStyle: leading
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true
+  EnforcedStyle: no_empty_lines
+  Exclude:
+    - 'test/**/*_test.rb'
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: true
+  EnforcedStyle: no_empty_lines
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Layout/FirstArrayElementIndentation:
+  Enabled: true
+  EnforcedStyle: consistent
+Layout/HashAlignment:
+  Enabled: true
+  EnforcedLastArgumentHashStyle: ignore_implicit
+Layout/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: normal
+# Too many false positives.
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+Layout/MultilineOperationIndentation:
+  Enabled: false
+Layout/MultilineAssignmentLayout:
+  Enabled: true
+  EnforcedStyle: new_line
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Layout/SpaceInLambdaLiteral:
+  Enabled: false
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Lint/RedundantSplatExpansion:
+  Enabled: false
+Lint/RedundantCopDisableDirective:
+  # Fixes issues in Rubocop integrations which use temporary files. In those
+  # cases ignores can be removed inappropriately.
+  Enabled: true
+  Exclude:
+    - /tmp/**/*
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - concerning
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Include:
+    - test/integration/**/*_test.rb
+  Enabled: true
+  Max: 600
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 40
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+Naming/MethodParameterName:
+  Enabled: true
+  AllowedNames: io, id, to, by, on, in, at, ip, db, x, y, ok, ko, js
+Naming/MemoizedInstanceVariableName:
+  Enabled: true
+  EnforcedStyleForLeadingUnderscores: optional
+Naming/RescuedExceptionsVariableName:
+  Enabled: true
+  PreferredName: error
+Naming/VariableName:
+  Enabled: true
+# Half the code is snake_case, and default is normalcase, no consensus.
+Naming/VariableNumber:
+  Enabled: false
+Performance/Casecmp:
+  Enabled: false
+Rails/ActionFilter:
+  Enabled: true
+Rails/Date:
+  Enabled: true
+Rails/FindBy:
+  Enabled: true
+Rails/FilePath:
+  Enabled: false
+Rails/FindEach:
+  Enabled: true
+Rails/HasAndBelongsToMany:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/HttpPositionalArguments:
+  Enabled: false
+Rails/Output:
+  Enabled: true
+Rails/PluckInWhere:
+  Enabled: false
+Rails/ReadWriteAttribute:
+  Enabled: true
+Rails/SaveBang:
+  Enabled: true
+Rails/ScopeArgs:
+  Enabled: true
+Rails/SkipsModelValidations:
+  Enabled: false
+Rails/TimeZone:
+  Enabled: true
+Rails/WhereExists:
+  Enabled: false
+Security/YAMLLoad:
+  Enabled: true
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+Style/AndOr:
+  Enabled: true
+Style/AsciiComments:
+  Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
+Style/CharacterLiteral:
+  Enabled: false
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: map
+    collect!: map!
+    detect: find
+    find_all: select
+    inject: reduce
+Style/ExponentialNotation:
+  Enabled: true
+Style/MultilineTernaryOperator:
+  Enabled: false
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
+# The rubocop solution is much less readable, and do not bring enough value.
+Style/StructInheritance:
+  Enabled: false
+Style/TrailingCommaInArguments:
+  # EnforcedStyleForMultiline: consistent_comma
+  # TODO: This rule is bugged since 0.61, we may re-check in a few versions if it is fixed.
+  Enabled: false
+Style/TrailingUnderscoreVariable:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  # Nothing has been decided on this, so we disable it until there is a consensus.
+  Enabled: false
+Style/CommandLiteral:
+  Enabled: true
+  EnforcedStyle: percent_x
+Style/CommentAnnotation:
+  Enabled: false
+Style/CommentedKeyword:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Style/EvenOdd:
+  Enabled: false
+Style/ExpandPathArguments:
+  Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  Exclude:
+    - 'react-native/DoctolibDoctor/ios/Podfile'
+    - 'react-native/DoctolibPatient/ios/Podfile'
+    - 'bin/'
+# Too much false positives: https://github.com/rubocop-hq/rubocop/issues/4425
+Style/FormatStringToken:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19
+  UseHashRocketsWithSymbolValues: false
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/Lambda:
+  Enabled: false
+Style/MethodDefParentheses:
+  Enabled: true
+  EnforcedStyle: require_parentheses
+# This cop is bad: `extend self` and `module_function` are not equivalent.
+Style/ModuleFunction:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Style/MutableConstant:
+  Enabled: true
+Style/NegatedIf:
+  Enabled: false
+Style/NumericPredicate:
+  Enabled: true
+  EnforcedStyle: comparison
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%W': ()
+    '%i': ()
+    '%w': ()
+Style/RaiseArgs:
+  EnforcedStyle: exploded
+Style/SignalException:
+  Enabled: false
+Style/SlicingWithRange:
+  Enabled: true
+Style/StringConcatenation:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+Style/SymbolArray:
+  Enabled: true
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
